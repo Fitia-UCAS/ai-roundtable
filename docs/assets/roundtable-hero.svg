@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">AI ROUND TABLE</title>
+  <desc id="desc">三个品牌色节点连接两侧的对话卡片。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0a1020"/>
+      <stop offset=".54" stop-color="#131d37"/>
+      <stop offset="1" stop-color="#0c1830"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#314365" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#192740" stop-opacity=".68"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#3e8cff" stop-opacity="0"/>
+      <stop offset=".38" stop-color="#678fff"/>
+      <stop offset=".7" stop-color="#a494ff"/>
+      <stop offset="1" stop-color="#28d7a0" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="blueGlow"><stop stop-color="#247cff" stop-opacity=".35"/><stop offset="1" stop-color="#247cff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="orangeGlow"><stop stop-color="#ff842d" stop-opacity=".29"/><stop offset="1" stop-color="#ff842d" stop-opacity="0"/></radialGradient>
+    <radialGradient id="greenGlow"><stop stop-color="#10d591" stop-opacity=".3"/><stop offset="1" stop-color="#10d591" stop-opacity="0"/></radialGradient>
+    <linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#59adff"/><stop offset="1" stop-color="#1672f5"/></linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffbf70"/><stop offset="1" stop-color="#ff7325"/></linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5cf2bc"/><stop offset="1" stop-color="#08bf81"/></linearGradient>
+    <filter id="shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#030713" flood-opacity=".5"/></filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+    <pattern id="dots" width="26" height="26" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#88a6dc" opacity=".16"/></pattern>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="378" rx="28" fill="url(#bg)" stroke="#344a75" stroke-width="2"/>
+  <rect x="1" y="1" width="1198" height="378" rx="28" fill="url(#dots)"/>
+  <circle cx="540" cy="165" r="245" fill="url(#blueGlow)"/>
+  <circle cx="435" cy="320" r="205" fill="url(#orangeGlow)"/>
+  <circle cx="735" cy="300" r="210" fill="url(#greenGlow)"/>
+
+  <path d="M24 231C223 61 321 306 482 184S780 54 1176 197" fill="none" stroke="url(#line)" stroke-width="3" opacity=".66"/>
+  <path d="M26 276C236 370 327 111 494 228S858 386 1170 143" fill="none" stroke="url(#line)" stroke-width="2" opacity=".34"/>
+  <path d="M0 192C213 260 305 183 420 190M782 191c126 18 229 7 418-49" fill="none" stroke="#7c9fff" stroke-width="1" opacity=".18"/>
+
+  <g filter="url(#shadow)" opacity=".9">
+    <rect x="93" y="92" width="296" height="194" rx="22" fill="url(#glass)" stroke="#53698b" stroke-opacity=".65"/>
+    <circle cx="135" cy="130" r="15" fill="#4c99ff"/>
+    <rect x="162" y="122" width="120" height="12" rx="6" fill="#dce7ff" opacity=".72"/>
+    <rect x="123" y="166" width="230" height="8" rx="4" fill="#a7b8d8" opacity=".6"/>
+    <rect x="123" y="184" width="192" height="8" rx="4" fill="#a7b8d8" opacity=".43"/>
+    <rect x="123" y="202" width="212" height="8" rx="4" fill="#a7b8d8" opacity=".32"/>
+    <rect x="123" y="244" width="76" height="15" rx="7.5" fill="#6894ef" opacity=".42"/>
+    <rect x="209" y="244" width="54" height="15" rx="7.5" fill="#6894ef" opacity=".28"/>
+  </g>
+
+  <g filter="url(#shadow)" opacity=".9">
+    <rect x="811" y="92" width="296" height="194" rx="22" fill="url(#glass)" stroke="#53698b" stroke-opacity=".65"/>
+    <circle cx="853" cy="130" r="15" fill="#27d69d"/>
+    <rect x="880" y="122" width="120" height="12" rx="6" fill="#dce7ff" opacity=".72"/>
+    <rect x="841" y="166" width="217" height="8" rx="4" fill="#a7b8d8" opacity=".6"/>
+    <rect x="841" y="184" width="234" height="8" rx="4" fill="#a7b8d8" opacity=".43"/>
+    <rect x="841" y="202" width="168" height="8" rx="4" fill="#a7b8d8" opacity=".32"/>
+    <circle cx="1053" cy="248" r="17" fill="#155f4b"/>
+    <path d="m1045 248 5 5 11-12" fill="none" stroke="#67f0b8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <circle cx="600" cy="190" r="126" fill="#5670b6" opacity=".17" filter="url(#soft)"/>
+  <circle cx="600" cy="190" r="112" fill="none" stroke="#a3b3ff" stroke-opacity=".18" stroke-width="1.5"/>
+  <circle cx="600" cy="190" r="94" fill="none" stroke="#a3b3ff" stroke-opacity=".14" stroke-width="1.5"/>
+  <g filter="url(#shadow)">
+    <circle cx="600" cy="130" r="45" fill="url(#blue)"/>
+    <circle cx="550" cy="225" r="45" fill="url(#orange)"/>
+    <circle cx="650" cy="225" r="45" fill="url(#green)"/>
+  </g>
+
+  <circle cx="462" cy="65" r="3" fill="#a5bdff" opacity=".75"/>
+  <circle cx="760" cy="102" r="4" fill="#65e7bc" opacity=".7"/>
+  <circle cx="766" cy="291" r="3" fill="#a5bdff" opacity=".7"/>
+  <circle cx="437" cy="303" r="3" fill="#ffb274" opacity=".7"/>
+</svg>

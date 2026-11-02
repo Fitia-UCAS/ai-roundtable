@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>AI ROUND TABLE</title>
+    <link rel="stylesheet" href="sidepanel.css">
+  </head>
+  <body>
+    <div class="shell">
+      <header class="app-header">
+        <button id="session-switcher" class="session-switcher" type="button" aria-label="切换讨论" aria-expanded="false">
+          <span class="logo-frame"><img src="icons/logo.svg" alt=""></span>
+          <span id="meeting-name" class="meeting-name">新讨论</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m5 6 3 3 3-3"/></svg>
+        </button>
+        <div class="header-actions">
+          <button id="export-discussion" class="icon-button" type="button" aria-label="导出当前讨论" title="导出当前讨论">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"/></svg>
+          </button>
+          <button id="refresh-connection" class="icon-button" type="button" aria-label="刷新并重新连接" title="刷新网页并重新检测连接">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2 6M20 4v7h-7"/></svg>
+          </button>
+          <button id="new-session" class="icon-button" type="button" aria-label="新建讨论" title="新建讨论">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <button id="more-button" class="icon-button" type="button" aria-label="更多操作" aria-expanded="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="19" cy="12" r="1.4"/></svg>
+          </button>
+        </div>
+
+        <div id="session-menu" class="popover session-menu" hidden>
+          <div id="session-list" class="session-list"></div>
+        </div>
+        <div id="more-menu" class="popover action-menu" hidden>
+          <button type="button" data-action="settings"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19 13 2-1-2-1-.7-3-3 .2L13 5l-2 2-3-.2-.7 3-2 1 2 2 .7 3 3-.2 2 2 2-2 3 .2z"/></svg><span>设置</span></button>
+          <button type="button" data-action="force-stop" class="danger" hidden><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></svg><span>强制结束当前接力</span></button>
+        </div>
+      </header>
+
+      <main class="conversation" aria-label="接力记录">
+        <div id="timeline" class="timeline" aria-live="polite">
+          <div id="empty-state" class="empty-state">
+            <span>还没有接力记录</span>
+          </div>
+        </div>
+      </main>
+
+      <footer class="composer-wrap">
+        <div id="status-area" class="status-area">
+          <div id="operation-bar" class="operation-bar" data-tone="idle" role="status" aria-live="polite" hidden>
+            <img src="icons/icon48.png" alt="">
+            <p id="operation-text"></p>
+            <button id="operation-verify" type="button" hidden title="核对目标对话中的完整用户消息；必要时读取一次目标历史，不会重新发送">核对送达</button>
+            <button id="operation-stop" type="button" hidden>停止</button>
+          </div>
+          <div id="notice-bar" class="notice-bar" data-tone="error" role="status" aria-live="polite" hidden>
+            <p id="notice-text"></p>
+            <button id="notice-close" type="button" aria-label="关闭提示" title="关闭提示">×</button>
+          </div>
+        </div>
+        <div class="composer">
+          <textarea id="instruction" rows="1" maxlength="12000" aria-label="消息" placeholder=""></textarea>
+          <div class="composer-toolbar">
+            <div id="model-picker" class="model-picker" role="radiogroup" aria-label="选择接力目标">
+              <button class="model-button" type="button" data-provider="chatgpt" role="radio" aria-checked="false" aria-label="发送给 ChatGPT" title="ChatGPT">
+                <img src="icons/chatgpt.png" alt="">
+              </button>
+              <button class="model-button" type="button" data-provider="gemini" role="radio" aria-checked="false" aria-label="发送给 Gemini" title="Gemini">
+                <img src="icons/gemini.png" alt="">
+              </button>
+              <button class="model-button" type="button" data-provider="deepseek" role="radio" aria-checked="false" aria-label="发送给 DeepSeek" title="DeepSeek">
+                <img src="icons/deepseek.png" alt="">
+              </button>
+            </div>
+            <button id="swap-direction" class="model-button swap-direction" type="button" aria-label="交换传递方向" title="交换来源和目标">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16m-4-4 4 4-4 4M20 17H4m4-4-4 4 4 4"/></svg>
+            </button>
+            <button id="send-button" class="send-button" type="button" aria-label="发送" title="发送">
+              <svg class="send-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
+              <svg class="stop-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="8" height="8" rx="1"/></svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <template id="timeline-template">
+      <details class="relay-entry">
+        <summary class="entry-summary">
+          <span class="entry-avatar"><img alt=""></span>
+          <span class="entry-model-name"></span>
+          <span class="entry-route" hidden></span>
+          <svg class="entry-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m5 8 5 5 5-5"/></svg>
+        </summary>
+        <div class="entry-expanded">
+          <div class="entry-content" role="region" aria-label="接力消息正文" tabindex="0">
+            <p class="entry-prompt" hidden></p>
+            <p class="entry-answer" hidden></p>
+            <p class="entry-unavailable" hidden>这条接力尚无可显示的正文</p>
+            <p class="entry-note" hidden></p>
+          </div>
+          <div class="entry-footer">
+            <time class="entry-time"></time>
+            <div class="entry-tools">
+              <button type="button" data-entry-action="open" aria-label="打开目标对话" title="打开目标对话"><svg viewBox="0 0 24 24"><path d="M14 4h6v6m0-6-9 9M20 14v6H4V4h6"/></svg></button>
+              <button type="button" data-entry-action="copy" aria-label="复制消息" title="复制消息"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></button>
+              <button type="button" data-entry-action="collapse" aria-label="折叠消息" title="折叠消息"><svg viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </details>
+    </template>
+
+    <template id="session-template">
+      <div class="session-row">
+        <button class="session-choice" type="button" data-session-action="switch">
+          <span class="session-row-title"></span>
+          <small class="session-row-meta"></small>
+        </button>
+        <button class="session-delete" type="button" data-session-action="delete" aria-label="删除讨论" title="删除讨论">
+          <svg class="trash-icon" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 5h10M7 5V3.5h4V5m2 0-.6 9H5.6L5 5m2.3 2.5.2 4m3.2-4-.2 4"/></svg>
+          <svg class="confirm-icon" viewBox="0 0 18 18" aria-hidden="true"><path d="m4.5 9 3 3 6-7"/></svg>
+        </button>
+      </div>
+    </template>
+
+    <script src="shared/core.js"></script>
+    <script src="shared/export-format.js"></script>
+    <script src="sidepanel.js"></script>
+  </body>
+</html>

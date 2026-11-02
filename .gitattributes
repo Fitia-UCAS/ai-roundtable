@@ -1,0 +1,4 @@
+# This extension ships mixed line endings on purpose:
+# background/*.js is CRLF, the rest is LF. Disable EOL conversion so git
+# stores the bytes exactly as the browser loads them and diffs stay honest.
+* -text

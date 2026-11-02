@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>AI ROUND TABLE · 设置</title>
+<link rel="stylesheet" href="options.css"></head><body>
+<div class="settings-shell">
+  <aside class="sidebar"><div class="brand"><span class="logo-frame"><img src="icons/logo.svg" alt=""></span><span>AI ROUND TABLE</span></div>
+    <nav aria-label="设置分类">
+      <button data-tab="messages" class="nav-item active" type="button">消息管理</button>
+      <button data-tab="export" class="nav-item" type="button">导出配置</button>
+    </nav>
+  </aside>
+  <main class="main">
+    <header class="main-header"><h1 id="page-title">消息管理</h1><span id="feedback" role="alert" aria-live="assertive" hidden></span></header>
+    <section data-page="messages">
+      <div class="group-title">新建讨论</div>
+      <div class="setting-row"><div><b>默认消息保存模式</b></div>
+        <select id="default-mode"><option value="none">不保存</option><option value="relay">仅保存接力记录</option><option value="full">完整记录</option></select>
+      </div>
+      <div class="group-title">当前讨论</div>
+      <div class="setting-row"><div><b id="current-session">当前讨论</b></div>
+        <select id="session-mode"><option value="none">不保存</option><option value="relay">仅保存接力记录</option><option value="full">完整记录</option></select>
+      </div>
+      <div class="setting-row"><div><b>清理当前讨论缓存</b></div><button id="clear-cache" class="secondary">清除缓存</button></div>
+    </section>
+    <section data-page="export" hidden>
+      <div class="group-title">文件格式</div>
+      <div class="setting-row"><div><b>导出格式</b></div><select id="export-format"><option value="markdown">Markdown (.md)</option><option value="json">JSON (.json)</option></select></div>
+      <div class="group-title">内容</div>
+      <label class="setting-row"><div><b>包含时间戳</b></div><input id="include-time" type="checkbox" checked></label>
+      <label class="setting-row"><div><b>包含网页链接</b></div><input id="include-links" type="checkbox" checked></label>
+    </section>
+  </main>
+</div><dialog id="confirm-dialog"><form method="dialog"><h2>清除本地消息缓存？</h2><p>这个操作不可撤销。浏览器中的原始聊天记录和接力书签不会改变。</p><menu><button value="cancel" class="secondary">取消</button><button value="clear" class="destructive">确认清除</button></menu></form></dialog>
+<script src="options.js"></script>
+</body></html>
